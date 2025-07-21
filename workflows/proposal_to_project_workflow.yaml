@@ -1,0 +1,21 @@
+---
+name: "Proposal to Project Conversion Workflow"
+description: "Transforms a client proposal into an executable project plan with Confluence pages, Jira items, PRD, and DVT plans."
+version: 1.0
+author: "Mathieu Schneider"
+steps:
+  - step_name: "Generate Project Proposal Draft"
+    prompt: "prompts/business_operations/proposals/proposal_generator.md"
+    input_required: ["client_requirements", "project_goals"]
+
+  - step_name: "Create PRD & Test Plans"
+    prompt: "prompts/project_management/prds_test_plans/dvt_plan_creator.md"
+    input_required: ["project_name", "system_description", "compliance_requirements"]
+
+  - step_name: "Initialize Confluence and Jira Structure"
+    prompt: "prompts/project_management/confluence_jira_project_creation/confluence_jira_project_setup.md"
+    input_required: ["project_scope", "deliverables", "acceptance_criteria"]
+
+  - step_name: "Publish Project Plan Status Report"
+    prompt: "prompts/business_operations/status_reports/automated_status_report_generation.md"
+    input_required: ["reporting_period", "customer_name", "system_project_name", "scope_pages", "meeting_notes_location"]
