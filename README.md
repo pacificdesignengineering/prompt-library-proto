@@ -5,7 +5,7 @@
 ### 1. Clone the Repo
 
 ```sh
-git clone https://github.com/your-org/prompt-library-proto.git
+git clone https://github.com/pacificdesignengineering/prompt-library-proto.git
 cd prompt-library-proto
 ```
 
