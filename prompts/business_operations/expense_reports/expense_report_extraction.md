@@ -98,3 +98,5 @@ Date	Vendor	Description	Job Number	Base Amount	GST?	PST?	Amount (+PST)	GST	TOTAL
 - [ ] Final totals verified.
 - [ ] Output formatted as TSV.
 - [ ] Ready for accounting submission.
+
+<!-- END PROMPT -->

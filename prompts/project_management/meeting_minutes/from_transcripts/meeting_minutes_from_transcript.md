@@ -1,3 +1,5 @@
+# Meeting Minutes from Transcript
+
 ---
 name: "Meeting Minutes from Transcript"
 category: "project_management/meeting_minutes/from_transcripts"
@@ -6,15 +8,17 @@ version: 1.0
 author: "Mathieu Schneider"
 compatible_llms: [claude, chatgpt]
 compatible_interfaces: [ui]
-inputs: [meeting_transcript, template_url]
+inputs: [MEETING_TRANSCRIPT, TEMPLATE_URL]
 outputs: [formatted_meeting_minutes]
 chaining_compatible: false
 ---
 
+## prompt
+
 ## Context
 Attached is a meeting transcript that needs to be converted into formal meeting minutes following our standardized meeting format.
 
-**Template Location:** [Insert your Confluence/document template URL here]
+**Template Location:** {{TEMPLATE_URL}}
 
 ## Process Overview
 ### Step 1: Template Analysis
@@ -92,13 +96,15 @@ Attached is a meeting transcript that needs to be converted into formal meeting 
 - All links functional.
 - Document accessible.
 
+<!-- END PROMPT -->
+
 ## Example Usage
 ```
 # Meeting Minutes Generation Instructions
 
 ## Context
 I have attached a meeting transcript that needs to be converted into formal meeting minutes following our standardized [ORGANIZATION] meeting format.
-Template Location: [TEMPLATE_URL]
+Template Location: {{TEMPLATE_URL}}
 
 [Process steps customized for the organization]
 

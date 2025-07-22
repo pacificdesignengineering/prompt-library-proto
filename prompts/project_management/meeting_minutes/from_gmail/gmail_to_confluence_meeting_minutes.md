@@ -1,3 +1,5 @@
+# Gmail to Confluence Meeting Minutes
+
 ---
 name: "Gmail to Confluence Meeting Minutes"
 category: "project_management/meeting_minutes/from_gmail"
@@ -6,20 +8,20 @@ version: 1.1
 author: "Mathieu Schneider"
 compatible_llms: [chatgpt, claude]
 compatible_interfaces: [api, ui]
-inputs: [email_subject, confluence_page]
+inputs: [EMAIL_SUBJECT, CONFLUENCE_PAGE]
 outputs: [confluence_formatted_meeting_minutes]
 chaining_compatible: false
 ---
 
-## Gmail to Confluence Meeting Minutes Prompt
+## prompt
 
 Create comprehensive meeting notes from the specified email thread and update the given Confluence page. Handle Gmail API limitations gracefully while maximizing content extraction.
 
 Provide output for my review before updating the Confluence page.
 
 ### Task Parameters
-- **Email Subject/Search:** [Beacon 2.0 - Screens (Latest batch)]
-- **Confluence Page:** [spaces/C0/pages/784662579/2025-07-16+Email+Note+-+Beacon+2.0+-+Screens+Latest+batch]
+- **Email Subject/Search:** {{EMAIL_SUBJECT}}
+- **Confluence Page:** {{CONFLUENCE_PAGE}}
 
 ### Email Retrieval Protocol
 1. Search for the email using `search_gmail_messages` with the provided subject/criteria.
@@ -55,7 +57,7 @@ Provide output for my review before updating the Confluence page.
 ```
 ## 📄 Email Context
 
-| Subject Title | [Complete email subject] |
+| Subject Title | {{EMAIL_SUBJECT}} |
 | --- | --- |
 | Email Start Date | [Start] to [End dates] |
 | Participants | [All participants with roles] |
@@ -100,3 +102,5 @@ Provide output for my review before updating the Confluence page.
 - **Completeness:** Maximize available data.
 - **Actionability:** Provide clear next steps.
 - **Professional Quality:** Maintain standards regardless of constraints.
+
+<!-- END PROMPT -->
