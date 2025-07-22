@@ -1,0 +1,15 @@
+/* App.css */
+
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+nav {
+  @apply mb-6;
+}
+
+h1, h2, h3 {
+  @apply font-bold;
+}
+
+/* Add any custom styles for your app here */ 

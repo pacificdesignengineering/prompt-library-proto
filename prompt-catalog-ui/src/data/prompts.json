@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "name": "Expense Report Extraction",
+    "description": "Extract and process expense data from invoices and credit statements.",
+    "category": "Business Operations",
+    "llm": "Claude",
+    "body": "## Objective\nExtract expense data from PDF invoices and credit card statements...",
+    "inputs": [
+      { "name": "pdf_invoices", "label": "PDF Invoices" },
+      { "name": "credit_card_statements", "label": "Credit Card Statements" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Summarize Text",
+    "description": "Summarize a given text into a concise paragraph.",
+    "category": "Productivity",
+    "llm": "GPT-4",
+    "body": "Summarize the following text in one paragraph:\n\n{{text}}",
+    "inputs": [
+      { "name": "text", "label": "Text to Summarize", "placeholder": "Paste your text here..." }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Bug Report Template",
+    "description": "Create a bug report template for software issues.",
+    "category": "Engineering",
+    "llm": "Claude-2",
+    "body": "Bug Report\nTitle: {{title}}\nSteps to Reproduce: {{steps}}\nExpected Result: {{expected}}\nActual Result: {{actual}}",
+    "inputs": [
+      { "name": "title", "label": "Bug Title" },
+      { "name": "steps", "label": "Steps to Reproduce" },
+      { "name": "expected", "label": "Expected Result" },
+      { "name": "actual", "label": "Actual Result" }
+    ]
+  }
+] 
