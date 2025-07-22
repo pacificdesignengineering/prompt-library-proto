@@ -195,7 +195,7 @@ const PromptDetail = ({ filename }) => {
         </div>
         {/* Right: Form & Preview */}
         <div className="md:w-2/3 w-full flex flex-col gap-6">
-          {variables.length > 0 && (
+          {variables.length > 0 ? (
             <div className="backdrop-blur bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700 relative">
               <h3 className="font-semibold mb-4 text-xl tracking-tight">Customize Prompt</h3>
               <PromptConfigurator
@@ -218,6 +218,22 @@ const PromptDetail = ({ filename }) => {
                   {preview}
                 </pre>
               </div>
+            </div>
+          ) : (
+            <div className="backdrop-blur bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700 relative flex flex-col gap-4 items-start">
+              <div className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">No user input required for this prompt.</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">Just attach your files and run the prompt as-is.</div>
+              <button
+                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:scale-105 active:scale-95 transition-transform font-semibold z-20"
+                onClick={handleCopy}
+                type="button"
+                style={{ minWidth: 120 }}
+              >
+                {showCopied ? 'Copied!' : 'Copy to Clipboard'}
+              </button>
+              <pre className="mt-2 bg-gray-900/90 text-green-200 border border-gray-700 rounded-xl p-4 font-mono text-sm overflow-x-auto max-h-[40vh] shadow-inner transition-all duration-300">
+                {promptSection}
+              </pre>
             </div>
           )}
         </div>

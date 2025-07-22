@@ -4,12 +4,14 @@ category: "business_operations/expense_reports"
 description: "Extract and process expense data from PDF invoices and credit card statements to generate a complete digital expense report in Google Sheets, with special handling for AWS and TELUS invoices."
 version: 1.1
 author: "Mathieu Schneider"
-compatible_llms: [claude, chatgpt]
+compatible_llms: [claude]
 compatible_interfaces: [ui, cli]
 inputs: [pdf_invoices, credit_card_statements]
 outputs: [tab_separated_expense_report]
 chaining_compatible: false
 ---
+
+## prompt 
 
 ## Project Overview
 Extract expense data from PDF invoices and credit card statements to complete a digital expense report in Google Sheets. Use credit card statements to verify actual amounts paid in CAD, with special handling for AWS multi-account invoices and TELUS family plans.
