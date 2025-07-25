@@ -4,7 +4,7 @@
 name: "Meeting Minutes from Transcript"
 category: "project_management/meeting_minutes/from_transcripts"
 description: "Converts a raw meeting transcript into formal, template-compliant meeting minutes with structured formatting and critical accuracy standards."
-version: 1.0
+version: 1.1
 author: "Mathieu Schneider"
 compatible_llms: [claude, chatgpt]
 compatible_interfaces: [ui]
@@ -35,6 +35,7 @@ Attached is a meeting transcript that needs to be converted into formal meeting 
 - Generate minutes in the exact template format.
 - Incorporate formatting elements like status indicators, info panels, task lists.
 - Maintain professional tone and clarity.
+- **STOP: Do not proceed to publication. Present draft for approval first.**
 
 ### Critical Accuracy Requirements
 - Include only statements explicitly made in the transcript.
@@ -44,11 +45,17 @@ Attached is a meeting transcript that needs to be converted into formal meeting 
 - Avoid presenting inferred information as facts.
 - Quote directly or omit when uncertain.
 
-### Step 4: Review Process
-- Present draft for approval before publishing.
+### Step 4: MANDATORY Review Process
+- **WAIT FOR APPROVAL: Present draft and await confirmation before publishing.**
+- **DO NOT publish without explicit user consent.**
 - Be prepared for revisions.
+- **Before proceeding to Step 5, confirm:**
+  - [ ] Draft reviewed by user
+  - [ ] User explicitly approved publication
+  - [ ] All requested revisions completed
 
-### Step 5: Publication
+### Step 5: Publication (ONLY AFTER APPROVAL)
+- **MUST receive explicit user approval before publishing.**
 - Publish to designated location post-approval.
 - Verify formatting renders correctly.
 
