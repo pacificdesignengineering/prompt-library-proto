@@ -11,6 +11,42 @@ outputs: [tab_separated_expense_report]
 chaining_compatible: false
 ---
 
+## How to Use This Prompt
+
+### Quick Start Guide
+1. **Prepare Your Input**: Have your PDF invoices and credit card statements ready
+2. **Set Input Files**: Provide the PDF invoices and credit card CSV files
+3. **Run the Prompt**: Copy the prompt and paste it into your preferred LLM interface
+4. **Review & Process**: The prompt will generate a tab-separated expense report for Google Sheets
+
+### Video Tutorial
+📹 **Screen Recording**: [How to Use Expense Report Extraction](https://example.com/expense-report-tutorial)
+
+### Step-by-Step Instructions
+1. **Input Requirements**:
+   - PDF invoices (AWS, TELUS, and other vendors)
+   - Credit card statements (CSV format)
+   
+2. **Expected Output**:
+   - Tab-separated expense report ready for Google Sheets
+   - Properly calculated taxes (GST/PST) based on vendor type
+   - Currency conversions for USD transactions
+   - Special handling for AWS multi-account invoices and TELUS family plans
+
+3. **Best Practices**:
+   - Verify all invoices are accounted for
+   - Check currency conversions are accurate
+   - Confirm AWS allocations sum to original totals
+   - Verify TELUS portion calculations
+
+### Common Use Cases
+- **Monthly Expense Reports**: Process all monthly invoices and credit card transactions
+- **AWS Multi-Account**: Split AWS invoices by job code (IFD, PDE, RD Scan)
+- **TELUS Family Plans**: Extract individual charges for specific person
+- **International Transactions**: Handle USD to CAD conversions with proper tax treatment
+
+---
+
 ## prompt 
 
 ## Project Overview

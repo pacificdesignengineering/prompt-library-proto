@@ -1,17 +1,56 @@
 # Automated Status Report Generation
 
 ---
-
 name: "Automated Status Report Generation"
-category: "business\_operations/status\_reports"
+category: "business_operations/status_reports"
 description: "Generates a structured Confluence-formatted status report and PO review analysis using Jira, Confluence scope pages, and meeting notes. Includes embedded decision extraction logic."
 version: 1.1
 author: "Mathieu Schneider"
-compatible\_llms: \[claude, chatgpt, cursor]
-compatible\_interfaces: \[api, ui, cli]
-inputs: \[REPORTING_PERIOD, CUSTOMER, SYSTEM_PROJECT_NAME, SCOPE_PAGES, MEETING_NOTES_LOCATION, STATUS_REPORT_TEMPLATE]
-outputs: \[status_report_confluence_format, po_review_analysis]
-chaining\_compatible: true
+compatible_llms: [claude, chatgpt, cursor]
+compatible_interfaces: [api, ui, cli]
+inputs: [REPORTING_PERIOD, CUSTOMER, SYSTEM_PROJECT_NAME, SCOPE_PAGES, MEETING_NOTES_LOCATION, STATUS_REPORT_TEMPLATE]
+outputs: [status_report_confluence_format, po_review_analysis]
+chaining_compatible: true
+---
+---
+
+## How to Use This Prompt
+
+### Quick Start Guide
+1. **Prepare Your Input**: Have your reporting period and project details ready
+2. **Set Project Parameters**: Provide customer, system name, and Confluence page locations
+3. **Run the Prompt**: Copy the prompt and paste it into your preferred LLM interface
+4. **Review & Publish**: The prompt will generate a comprehensive status report for your review
+
+### Video Tutorial
+📹 **Screen Recording**: [How to Use Automated Status Report Generation](https://example.com/status-report-tutorial)
+
+### Step-by-Step Instructions
+1. **Input Requirements**:
+   - Reporting period (e.g., "July 2025")
+   - Customer and system/project name
+   - Confluence scope pages location
+   - Meeting notes location
+   - Status report template page
+   
+2. **Expected Output**:
+   - Confluence-formatted status report with departmental breakdown
+   - PO review analysis with decision extraction
+   - Work completed, planned, and remaining
+   - Risks, roadblocks, and budget concerns
+
+3. **Best Practices**:
+   - Verify all Jira work items are properly categorized
+   - Check decision extraction accuracy from meeting notes
+   - Review departmental work breakdown
+   - Validate budget and timeline accuracy
+
+### Common Use Cases
+- **Monthly Status Reports**: Regular project status updates for clients
+- **Quarterly Reviews**: Comprehensive project health assessments
+- **PO Review Analysis**: Contract and scope compliance verification
+- **Risk Assessment**: Identify and document project challenges
+
 ---
 
 ## Required Variables

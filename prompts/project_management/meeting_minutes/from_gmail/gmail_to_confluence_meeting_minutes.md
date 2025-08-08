@@ -13,6 +13,42 @@ outputs: [confluence_formatted_meeting_minutes]
 chaining_compatible: false
 ---
 
+## How to Use This Prompt
+
+### Quick Start Guide
+1. **Prepare Your Input**: Have your Gmail thread subject and Confluence page ready
+2. **Set Email Parameters**: Provide the email subject and target Confluence page
+3. **Run the Prompt**: Copy the prompt and paste it into your preferred LLM interface
+4. **Review & Update**: The prompt will extract meeting notes and format them for Confluence
+
+### Video Tutorial
+📹 **Screen Recording**: [How to Use Gmail to Confluence Meeting Minutes](https://example.com/gmail-meeting-minutes-tutorial)
+
+### Step-by-Step Instructions
+1. **Input Requirements**:
+   - Gmail thread subject or search criteria
+   - Target Confluence page location
+   
+2. **Expected Output**:
+   - Confluence-formatted meeting minutes with participants and timeline
+   - Extracted action items with assignees and deadlines
+   - Key decisions with rationale and alternatives
+   - Technical details and exact quotes from emails
+
+3. **Best Practices**:
+   - Handle Gmail API limitations gracefully
+   - Report data access quality transparently
+   - Extract maximum information from available content
+   - Suggest .eml file upload for complete analysis when needed
+
+### Common Use Cases
+- **Email Thread Analysis**: Extract meeting notes from email discussions
+- **Confluence Documentation**: Format extracted content for team documentation
+- **Action Item Tracking**: Identify and assign action items from email threads
+- **Decision Documentation**: Capture key decisions and rationale from email discussions
+
+---
+
 ## prompt
 
 Create comprehensive meeting notes from the specified email thread and update the given Confluence page. Handle Gmail API limitations gracefully while maximizing content extraction.

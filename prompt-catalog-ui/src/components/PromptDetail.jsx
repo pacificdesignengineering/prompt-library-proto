@@ -64,6 +64,98 @@ function extractPromptSection(text) {
   return lines.slice(start, end).join('\n').trim();
 }
 
+// Helper to extract metadata from the frontmatter
+function extractMetadata(content) {
+  const metadata = {};
+  
+  // Extract frontmatter between --- markers (handle various formats)
+  const frontmatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
+  if (frontmatterMatch) {
+    const frontmatter = frontmatterMatch[1];
+    const lines = frontmatter.split('\n');
+    
+    lines.forEach(line => {
+      const colonIndex = line.indexOf(':');
+      if (colonIndex > 0) {
+        const key = line.substring(0, colonIndex).trim();
+        let value = line.substring(colonIndex + 1).trim();
+        
+        // Remove quotes if present
+        if ((value.startsWith('"') && value.endsWith('"')) || 
+            (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
+        }
+        
+        // Handle array values
+        if (value.startsWith('[') && value.endsWith(']')) {
+          value = value.slice(1, -1).split(',').map(v => v.trim());
+        }
+        
+        metadata[key] = value;
+      }
+    });
+  }
+  
+  // Fallback: try to extract individual metadata fields if frontmatter parsing failed
+  if (Object.keys(metadata).length === 0) {
+    const get = (key) => {
+      const re = new RegExp(`^${key}:\s*"?([^\n"]+)"?`, 'im');
+      const found = content.match(re);
+      return found ? found[1].trim() : '';
+    };
+    
+    metadata.name = get('name');
+    metadata.description = get('description');
+    metadata.author = get('author');
+    metadata.version = get('version');
+    metadata.category = get('category');
+    
+    // Handle compatible_llms array
+    const llmsMatch = content.match(/compatible_llms:\s*\[([^\]]+)\]/i);
+    if (llmsMatch) {
+      metadata.compatible_llms = llmsMatch[1].split(',').map(v => v.trim());
+    }
+    
+    // Handle inputs array
+    const inputsMatch = content.match(/inputs:\s*\[([^\]]+)\]/i);
+    if (inputsMatch) {
+      metadata.inputs = inputsMatch[1].split(',').map(v => v.trim());
+    }
+    
+    // Handle outputs array
+    const outputsMatch = content.match(/outputs:\s*\[([^\]]+)\]/i);
+    if (outputsMatch) {
+      metadata.outputs = outputsMatch[1].split(',').map(v => v.trim());
+    }
+  }
+  
+  return metadata;
+}
+
+// Helper to extract how-to guide section
+function extractHowToGuide(content) {
+  const lines = content.split('\n');
+  let start = -1;
+  let end = -1;
+  
+  for (let i = 0; i < lines.length; ++i) {
+    const line = lines[i].trim();
+    // Case-insensitive matching for the how-to guide section
+    if (line.toLowerCase() === '## how to use this prompt') {
+      start = i;
+    } else if (start !== -1 && line.toLowerCase() === '## prompt') {
+      end = i;
+      break;
+    }
+  }
+  
+  if (start !== -1 && end !== -1) {
+    return lines.slice(start, end).join('\n').trim();
+  }
+  
+  return null;
+}
+
 const Collapsible = ({ title, children }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -94,6 +186,98 @@ const DarkModeToggle = ({ dark, setDark }) => (
     )}
   </button>
 );
+
+const MetadataCard = ({ metadata }) => (
+  <div className="bg-white/80 dark:bg-gray-800/80 rounded-xl p-4 border border-gray-200 dark:border-gray-700 mb-4">
+    <h3 className="font-semibold text-lg mb-3 text-gray-800 dark:text-gray-200">Prompt Information</h3>
+    <div className="space-y-3">
+      {metadata.name && (
+        <div className="flex items-center">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">Name:</span>
+          <span className="text-sm text-gray-800 dark:text-gray-200">{metadata.name}</span>
+        </div>
+      )}
+      {metadata.version && (
+        <div className="flex items-center">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">Version:</span>
+          <span className="text-sm text-gray-800 dark:text-gray-200">v{metadata.version}</span>
+        </div>
+      )}
+      {metadata.author && (
+        <div className="flex items-center">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">Author:</span>
+          <span className="text-sm text-gray-800 dark:text-gray-200">{metadata.author}</span>
+        </div>
+      )}
+      {metadata.category && (
+        <div className="flex items-center">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">Category:</span>
+          <span className="text-sm text-gray-800 dark:text-gray-200">{metadata.category}</span>
+        </div>
+      )}
+      {metadata.compatible_llms && (
+        <div className="flex items-start">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">LLMs:</span>
+          <div className="flex flex-wrap gap-1">
+            {Array.isArray(metadata.compatible_llms) ? metadata.compatible_llms.map((llm, idx) => (
+              <span key={idx} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                {llm}
+              </span>
+            )) : (
+              <span className="text-sm text-gray-800 dark:text-gray-200">{metadata.compatible_llms}</span>
+            )}
+          </div>
+        </div>
+      )}
+      {metadata.inputs && (
+        <div className="flex items-start">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">Inputs:</span>
+          <div className="flex flex-wrap gap-1">
+            {Array.isArray(metadata.inputs) ? metadata.inputs.map((input, idx) => (
+              <span key={idx} className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">
+                {input}
+              </span>
+            )) : (
+              <span className="text-sm text-gray-800 dark:text-gray-200">{metadata.inputs}</span>
+            )}
+          </div>
+        </div>
+      )}
+      {metadata.outputs && (
+        <div className="flex items-start">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-20">Outputs:</span>
+          <div className="flex flex-wrap gap-1">
+            {Array.isArray(metadata.outputs) ? metadata.outputs.map((output, idx) => (
+              <span key={idx} className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded-full">
+                {output}
+              </span>
+            )) : (
+              <span className="text-sm text-gray-800 dark:text-gray-200">{metadata.outputs}</span>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+);
+
+const HowToGuideCard = ({ howToGuide }) => {
+  if (!howToGuide) return null;
+  
+  return (
+    <div className="bg-white/80 dark:bg-gray-800/80 rounded-xl p-4 border border-gray-200 dark:border-gray-700 mb-4">
+      <h3 className="font-semibold text-lg mb-3 text-gray-800 dark:text-gray-200 flex items-center">
+        <svg className="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        How to Use This Prompt
+      </h3>
+      <div className="prose prose-sm dark:prose-invert max-w-none">
+        <ReactMarkdown>{howToGuide}</ReactMarkdown>
+      </div>
+    </div>
+  );
+};
 
 const PromptDetail = ({ filename }) => {
   const [content, setContent] = useState('');
@@ -128,19 +312,16 @@ const PromptDetail = ({ filename }) => {
       .finally(() => setLoading(false));
   }, [filename]);
 
-  // Extract metadata for summary card
-  const meta = useMemo(() => {
-    const m = {};
-    const get = (key) => {
-      const re = new RegExp(`^${key}:\s*"?([^\n"]+)`, 'im');
-      const found = content.match(re);
-      return found ? found[1].trim() : '';
-    };
-    m.name = get('name');
-    m.description = get('description');
-    m.author = get('author');
-    m.version = get('version');
-    return m;
+  // Extract metadata and how-to guide
+  const metadata = useMemo(() => {
+    const extracted = extractMetadata(content);
+    console.log('Extracted metadata:', extracted);
+    return extracted;
+  }, [content]);
+  const howToGuide = useMemo(() => {
+    const extracted = extractHowToGuide(content);
+    console.log('Extracted how-to guide:', extracted ? 'Found' : 'Not found');
+    return extracted;
   }, [content]);
 
   const variables = useMemo(() => extractVariables(content), [content]);
@@ -177,22 +358,32 @@ const PromptDetail = ({ filename }) => {
     <div className={`relative min-h-screen transition-colors duration-500 ${dark ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-100' : 'bg-gradient-to-br from-blue-100 via-white to-purple-100 text-gray-900'}`}>
       <DarkModeToggle dark={dark} setDark={setDark} />
       <div className="max-w-5xl mx-auto py-8 px-4 flex flex-col md:flex-row gap-8">
-        {/* Left: Summary Card */}
+        {/* Left: Summary Cards */}
         <div className="md:w-1/3 w-full flex flex-col gap-6">
+          {/* Main Title Card */}
           <div className="backdrop-blur bg-white/70 dark:bg-gray-900/70 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-3xl font-extrabold mb-2 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-300 dark:to-purple-400">{meta.name || filename}</h2>
-            <div className="text-base text-gray-700 dark:text-gray-300 mb-2">{meta.description}</div>
-            <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-              <span>v{meta.version}</span>
-              <span>Author: {meta.author}</span>
+            <h2 className="text-3xl font-extrabold mb-2 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-300 dark:to-purple-400">
+              {metadata.name || filename}
+            </h2>
+            <div className="text-base text-gray-700 dark:text-gray-300 mb-4">
+              {metadata.description}
             </div>
           </div>
-          <Collapsible title="Show Metadata & Advanced Details">
+
+          {/* Metadata Card */}
+          <MetadataCard metadata={metadata} />
+
+          {/* How-to Guide Card */}
+          <HowToGuideCard howToGuide={howToGuide} />
+
+          {/* Advanced Details Collapsible */}
+          <Collapsible title="Show Full Prompt Details">
             <div className="mb-4">
               <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">{content}</ReactMarkdown>
             </div>
           </Collapsible>
         </div>
+
         {/* Right: Form & Preview */}
         <div className="md:w-2/3 w-full flex flex-col gap-6">
           {variables.length > 0 ? (

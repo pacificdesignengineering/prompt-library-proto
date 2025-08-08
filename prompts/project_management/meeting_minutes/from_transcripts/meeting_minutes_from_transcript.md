@@ -9,8 +9,43 @@ author: "Mathieu Schneider"
 compatible_llms: [claude, chatgpt]
 compatible_interfaces: [ui]
 inputs: [MEETING_TRANSCRIPT, TEMPLATE_URL]
-outputs: [formatted_meeting_minutes]
+outputs: [confluence_formatted_meeting_minutes]
 chaining_compatible: false
+---
+
+## How to Use This Prompt
+
+### Quick Start Guide
+1. **Prepare Your Input**: Have your meeting transcript ready (text format)
+2. **Set Confluence Meeting Minutes URL**: Provide the URL to your meeting minutes
+3. **Run the Prompt**: Copy the prompt and paste it into your preferred LLM interface
+4. **Review & Approve**: The prompt will generate a draft for your review before finalizing
+
+### Video Tutorial
+📹 **Screen Recording**: [How to Use Meeting Minutes Prompt](https://example.com/meeting-minutes-tutorial)
+
+### Step-by-Step Instructions
+1. **Input Requirements**:
+   - Meeting transcript (raw text from recording or notes)
+   - Minutes URL (Confluence)
+   
+2. **Expected Output**:
+   - Confluence formatted meeting minutes following your template provided
+   - *Requires manual post* formatting for Confluence Macros and mentions
+   - Structured with participants, decisions, action items
+   - Ready for review and publishing
+
+3. **Best Practices**:
+   - Always review the generated draft before finalizing
+   - Verify technical details are accurately quoted
+   - Check that action items have clear owners and *deadlines* when applicable
+
+### Common Use Cases
+- **Project Status Meetings**: Focus on milestones and blockers
+- **Client Meetings**: Emphasize decisions and next steps
+- **Internal Team Meetings**: Capture discussions and action items
+- **External Stakeholder Meetings**: Highlight key decisions and commitments
+
 ---
 
 ## prompt
