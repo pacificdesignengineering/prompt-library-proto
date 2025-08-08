@@ -22,7 +22,7 @@ chaining_compatible: false
 4. **Review & Update**: The prompt will extract meeting notes and format them for Confluence
 
 ### Video Tutorial
-📹 **Screen Recording**: [How to Use Gmail to Confluence Meeting Minutes](https://example.com/gmail-meeting-minutes-tutorial)
+📹 **Screen Recording**: [TODO]()
 
 ### Step-by-Step Instructions
 1. **Input Requirements**:

@@ -23,7 +23,7 @@ chaining_compatible: true
 4. **Review & Publish**: The prompt will generate a comprehensive status report for your review
 
 ### Video Tutorial
-📹 **Screen Recording**: [How to Use Automated Status Report Generation](https://example.com/status-report-tutorial)
+📹 **Screen Recording**: [N/A]()
 
 ### Step-by-Step Instructions
 1. **Input Requirements**:

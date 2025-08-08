@@ -20,7 +20,7 @@ chaining_compatible: false
 4. **Review & Process**: The prompt will generate a tab-separated expense report for Google Sheets
 
 ### Video Tutorial
-📹 **Screen Recording**: [How to Use Expense Report Extraction](https://example.com/expense-report-tutorial)
+📹 **Screen Recording**: [N/A]()
 
 ### Step-by-Step Instructions
 1. **Input Requirements**:

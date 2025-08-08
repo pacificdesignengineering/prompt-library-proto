@@ -22,7 +22,7 @@ chaining_compatible: true
 4. **Review & Customize**: The prompt will generate a comprehensive DVT plan for your review
 
 ### Video Tutorial
-📹 **Screen Recording**: [How to Use DVT Plan Creator](https://example.com/dvt-plan-tutorial)
+📹 **Screen Recording**: [todo]()
 
 ### Step-by-Step Instructions
 1. **Input Requirements**:

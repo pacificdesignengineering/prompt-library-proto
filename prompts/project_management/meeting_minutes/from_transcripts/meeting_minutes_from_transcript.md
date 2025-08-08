@@ -9,7 +9,7 @@ author: "Mathieu Schneider"
 compatible_llms: [claude, chatgpt]
 compatible_interfaces: [ui]
 inputs: [MEETING_TRANSCRIPT, TEMPLATE_URL]
-outputs: [confluence_formatted_meeting_minutes]
+outputs: [published_confluence_meeting_minutes]
 chaining_compatible: false
 ---
 
@@ -22,7 +22,7 @@ chaining_compatible: false
 4. **Review & Approve**: The prompt will generate a draft for your review before finalizing
 
 ### Video Tutorial
-📹 **Screen Recording**: [How to Use Meeting Minutes Prompt](https://example.com/meeting-minutes-tutorial)
+📹 **Screen Recording**: [How to Use Meeting Minutes Prompt](https://drive.google.com/file/d/1VWof14_ZZ6892AiStmpuMhicyB-v-v8J/view?usp=drive_link)
 
 ### Step-by-Step Instructions
 1. **Input Requirements**:
