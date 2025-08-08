@@ -29,6 +29,34 @@ app.get('/api/prompts', (req, res) => {
   res.json(files);
 });
 
+// List categories based on existing prompt file locations
+// A category is derived from the directory path that contains a prompt file
+app.get('/api/categories', (req, res) => {
+  const categories = new Set();
+
+  function collect(dir) {
+    fs.readdirSync(dir).forEach(entry => {
+      const fullPath = path.join(dir, entry);
+      const stat = fs.statSync(fullPath);
+      if (stat.isDirectory()) {
+        collect(fullPath);
+      } else if (entry.toLowerCase().endsWith('.md')) {
+        const relFile = path.relative(PROMPTS_DIR, fullPath).replace(/\\/g, '/');
+        const category = path.posix.dirname(relFile);
+        if (category && category !== '.') categories.add(category);
+      }
+    });
+  }
+
+  try {
+    collect(PROMPTS_DIR);
+    res.json(Array.from(categories).sort());
+  } catch (e) {
+    console.error('Failed to list categories', e);
+    res.status(500).json({ error: 'Failed to list categories' });
+  }
+});
+
 // Get prompt content (supports subfolders)
 app.get('/api/prompts/*', (req, res) => {
   console.log('Matched wildcard route:', req.url);
