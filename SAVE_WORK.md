@@ -1,30 +1,53 @@
-# How to Save Work (Commit & Push)
+# 🚀 Cursor Git Commands for Prompt Library
 
-You can save your work (stage, commit, and push changes) using either manual git commands or the provided script.
-
-## Option 1: Manual Git Commands
-1. Stage all changes:
-   ```sh
-   git add .
-   ```
-2. Commit with a descriptive message:
-   ```sh
-   git commit -m "Your descriptive message"
-   ```
-3. Push to the remote repository:
-   ```sh
-   git push
-   ```
-
-## Option 2: Use the Script (save-work.sh)
-1. Make sure you have bash (WSL, Git Bash, or similar).
-2. In your project root, run:
-   ```sh
-   ./save-work.sh "Your descriptive message"
-   ```
-   - If you omit the message, the script will prompt you for one.
+Use these commands inside Cursor's agent window to automate your workflow.
 
 ---
 
-**Shortcut:**
-Just tell the assistant: `save work` — and these steps will be performed for you automatically! 
+### 🆕 Start New Feature Branch
+```
+start "your-feature-name"
+```
+Creates and checks out a new feature branch.
+
+---
+
+### 💾 Save Your Work
+```
+save "short commit message"
+```
+Adds and commits all changes, then pushes to remote.
+
+---
+
+### 🔁 Create Pull Request
+```
+pr "Short PR summary title"
+```
+Generates the GitHub pull request link for your branch.
+
+---
+
+### 🔍 Check Current Git Status
+```
+check
+```
+Shows current branch and working directory status.
+
+---
+
+### 🔄 Sync with Main
+```
+sync
+```
+Pulls the latest changes from `main` before starting a new branch.
+
+---
+
+### ⚙️ Example Workflow
+```bash
+start "add-invoice-generator"
+# (do your changes)
+save "added initial invoice prompt"
+pr "Add invoice prompt to finance tools"
+```

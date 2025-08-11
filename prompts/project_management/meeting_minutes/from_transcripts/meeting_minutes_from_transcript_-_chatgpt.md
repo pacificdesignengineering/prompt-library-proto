@@ -3,7 +3,7 @@
 ---
 name: "Meeting Minutes from Transcript - ChatGPT"
 category: "project_management/meeting_minutes"
-description: "Uses Gemini meeting transcript and converts to Confluence based structure format.
+description: "Uses Gemini meeting transcript and converts to Confluence based structure format."
 version: 1.0
 author: "Ajay Raman"
 compatible_llms: [chatgpt]
