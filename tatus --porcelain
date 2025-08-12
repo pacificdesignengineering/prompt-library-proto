@@ -1,0 +1,33 @@
+[1mdiff --git a/SAVE_WORK.md b/SAVE_WORK.md[m
+[1mindex b34908e..71857d1 100644[m
+[1m--- a/SAVE_WORK.md[m
+[1m+++ b/SAVE_WORK.md[m
+[36m@@ -18,6 +18,15 @@[m [msave "short commit message"[m
+ ```[m
+ Adds and commits all changes, then pushes to remote.[m
+ [m
+[32m+[m[32m**Or use the smart save command:**[m
+[32m+[m[32m```[m
+[32m+[m[32mSave Work[m
+[32m+[m[32m```[m
+[32m+[m[32mThis command will:[m
+[32m+[m[32m1. Analyze your changes and generate a meaningful commit message[m
+[32m+[m[32m2. Add and commit all changes with the generated message[m
+[32m+[m[32m3. Let you know that you can push your changes[m
+[32m+[m
+ ---[m
+ [m
+ ### 🔁 Create Pull Request[m
+[36m@@ -51,3 +60,12 @@[m [mstart "add-invoice-generator"[m
+ save "added initial invoice prompt"[m
+ pr "Add invoice prompt to finance tools"[m
+ ```[m
+[32m+[m
+[32m+[m[32m**Or use the smart workflow:**[m
+[32m+[m[32m```bash[m
+[32m+[m[32mstart "add-invoice-generator"[m
+[32m+[m[32m# (do your changes)[m
+[32m+[m[32mSave Work[m
+[32m+[m[32m# (review the generated commit message)[m
+[32m+[m[32mpr "Add invoice prompt to finance tools"[m
+[32m+[m[32m```[m

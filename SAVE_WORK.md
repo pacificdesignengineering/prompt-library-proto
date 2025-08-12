@@ -18,6 +18,26 @@ save "short commit message"
 ```
 Adds and commits all changes, then pushes to remote.
 
+**Or use the manual save workflow:**
+```bash
+# Add all changes
+git add .
+
+# Commit with a meaningful message
+git commit -m "descriptive commit message"
+
+# Push to remote
+git push
+```
+
+**For meaningful commit messages, use this format:**
+```
+git commit -m "feat: brief description of what you added/changed
+
+- Bullet point of specific changes
+- Another bullet point if needed"
+```
+
 ---
 
 ### 🔁 Create Pull Request
@@ -49,5 +69,15 @@ Pulls the latest changes from `main` before starting a new branch.
 start "add-invoice-generator"
 # (do your changes)
 save "added initial invoice prompt"
+pr "Add invoice prompt to finance tools"
+```
+
+**Or use the manual workflow:**
+```bash
+start "add-invoice-generator"
+# (do your changes)
+git add .
+git commit -m "feat: add invoice prompt to finance tools"
+git push
 pr "Add invoice prompt to finance tools"
 ```
