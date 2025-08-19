@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  api:
+    image: node:22-alpine
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: >
+      sh -c "./setup.sh &&
+             node prompt-catalog-ui/prompt-api.cjs"
+    ports:
+      - "5000:5000"
+
+  ui:
+    image: node:22-alpine
+    working_dir: /workspace/prompt-catalog-ui
+    volumes:
+      - .:/workspace
+    environment:
+    #TODO: Don't harcode to the server IP
+      - VITE_API_URL=192.168.1.33:5000
+      - BROWSER=none
+    command: >
+      npm run dev -- --host 0.0.0.0 --port 5173
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
