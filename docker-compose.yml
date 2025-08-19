@@ -3,6 +3,7 @@ version: "3.9"
 services:
   api:
     image: node:22-alpine
+    restart: unless-stopped
     working_dir: /workspace
     volumes:
       - .:/workspace
@@ -14,6 +15,7 @@ services:
 
   ui:
     image: node:22-alpine
+    restart: unless-stopped
     working_dir: /workspace/prompt-catalog-ui
     volumes:
       - .:/workspace
