@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+const apiUrl = import.meta.env.VITE_API_URL || "localhost:5000";
+
 const TemplateGenerator = () => {
   const [formData, setFormData] = useState({
     promptName: '',
@@ -34,7 +36,7 @@ const TemplateGenerator = () => {
 
   useEffect(() => {
     // Fetch categories from backend derived from prompts directory
-    fetch('http://localhost:5000/api/categories')
+    fetch(`http://${apiUrl}/api/categories`)
       .then(res => res.ok ? res.json() : [])
       .then(list => setCategories(list))
       .catch(() => setCategories([]));

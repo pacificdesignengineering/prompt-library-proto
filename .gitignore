@@ -1,0 +1,3 @@
+node_modules/
+prompt-catalog-ui/node_modules/*
+package.json

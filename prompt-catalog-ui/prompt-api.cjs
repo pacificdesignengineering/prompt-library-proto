@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = 5000;
+const HOST = "0.0.0.0";
 
 const PROMPTS_DIR = path.join(__dirname, '../prompts');
 
@@ -76,6 +77,6 @@ app.get('/api/prompts/*', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Prompt API running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Prompt API running on http://${HOST}:${PORT}`);
 });

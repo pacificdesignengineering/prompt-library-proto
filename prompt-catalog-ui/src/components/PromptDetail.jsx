@@ -2,6 +2,9 @@ import React, { useEffect, useState, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import PromptConfigurator from './PromptConfigurator';
 
+const apiUrl = import.meta.env.VITE_API_URL || "localhost:5000";
+
+
 // Helper to extract variables like {{FIELD_NAME}}
 function extractVariables(text) {
   const regex = /{{\s*([A-Z0-9_]+)\s*}}/g;
@@ -295,7 +298,7 @@ const PromptDetail = ({ filename }) => {
     setValues({});
     setCopied(false);
     setShowCopied(false);
-    fetch(`http://localhost:5000/api/prompts/${encodeURIComponent(filename)}`)
+    fetch(`http://${apiUrl}/api/prompts/${encodeURIComponent(filename)}`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch prompt content');
         return res.text();
