@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
 const getCategory = filename => filename.split('/')[0] || '';
+const apiUrl = import.meta.env.VITE_API_URL || "localhost:5000";
 
 const PromptList = () => {
   const [filenames, setFilenames] = useState([]);
@@ -16,7 +17,7 @@ const PromptList = () => {
   // Fetch filenames on mount
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/prompts')
+    fetch(`http://${apiUrl}/api/prompts`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch prompt list');
         return res.json();
@@ -38,7 +39,7 @@ const PromptList = () => {
     setContentLoading(true);
     Promise.all(
       toFetch.map(filename =>
-        fetch(`http://localhost:5000/api/prompts/${encodeURIComponent(filename)}`)
+        fetch(`http://${apiUrl}/api/prompts/${encodeURIComponent(filename)}`)
           .then(res => res.ok ? res.text() : '')
           .then(text => [filename, text])
           .catch(() => [filename, ''])
