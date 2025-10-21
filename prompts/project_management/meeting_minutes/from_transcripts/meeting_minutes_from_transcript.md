@@ -4,7 +4,7 @@
 name: "Meeting Minutes from Transcript"
 category: "project_management/meeting_minutes/from_transcripts"
 description: "Converts a raw meeting transcript into formal, template-compliant meeting minutes with structured formatting and critical accuracy standards."
-version: 1.1
+version: 1.2
 author: "Mathieu Schneider"
 compatible_llms: [claude, chatgpt]
 compatible_interfaces: [ui]
@@ -53,90 +53,184 @@ chaining_compatible: false
 ## Context
 Attached is a meeting transcript that needs to be converted into formal meeting minutes following our standardized meeting format.
 
+
+
+Context
+
+Attached is a complete meeting transcript.
+Your task is to convert it into formal, factually accurate meeting minutes that conform to our organization’s documentation standards.
+The format and tone must be professional, objective, and suitable for publication or archival in Confluence Cloud.
+Use the following Confluence page as a template and to publish to:
 **Template Location:** {{TEMPLATE_URL}}
 
-## Process Overview
-### Step 1: Template Analysis
-- Access and review the meeting minutes template.
-- Identify required sections, formatting structure, and style guidelines.
-- Note specific formatting requirements, macros, or special elements.
+Process Overview
+Step 1 – Template Analysis
 
-### Step 2: Content Processing
-- Analyze the meeting transcript for key information.
-- Extract participants, decisions, action items, and discussion points.
-- Organize content according to the template structure.
+Review the meeting-minutes template specified by the user (if provided).
 
-### Step 3: Draft Creation
-- Generate minutes in the exact template format.
-- Incorporate formatting elements like status indicators, info panels, task lists.
-- Maintain professional tone and clarity.
-- **STOP: Do not proceed to publication. Present draft for approval first.**
+Identify required structural sections (e.g., date, attendees, goals, topics, decisions, action items, ambiguities).
 
-### Critical Accuracy Requirements
-- Include only statements explicitly made in the transcript.
-- Use direct quotes for technical details.
-- Clearly distinguish facts from opinions/speculation.
-- Attribute interpretations properly (e.g., "According to [Name]...").
-- Avoid presenting inferred information as facts.
-- Quote directly or omit when uncertain.
+Preserve required formatting such as tables, headings, task lists, or Confluence macros.
 
-### Step 4: MANDATORY Review Process
-- **WAIT FOR APPROVAL: Present draft and await confirmation before publishing.**
-- **DO NOT publish without explicit user consent.**
-- Be prepared for revisions.
-- **Before proceeding to Step 5, confirm:**
-  - [ ] Draft reviewed by user
-  - [ ] User explicitly approved publication
-  - [ ] All requested revisions completed
+If no template is provided, default to a standard structure:
 
-### Step 5: Publication (ONLY AFTER APPROVAL)
-- **MUST receive explicit user approval before publishing.**
-- Publish to designated location post-approval.
-- Verify formatting renders correctly.
+Date / Time / Duration
 
-### Step 6: Quality Verification
-- Read published content to verify accuracy.
-- Confirm formatting and functional elements.
-- Report any discrepancies.
+Participants (by organization or role)
 
-## Additional Requirements
-### Content Standards
-- Prioritize accuracy and completeness.
-- Consistent formatting.
-- Clear action items with owners and deadlines.
+Goals or Agenda
 
-### Documentation Standards
-- Quote all technical data.
-- Distinguish decisions, opinions, and facts.
-- Attribute summaries accurately.
+Discussion Topics (in tabular format)
 
-### Template Customization Instructions
-- Replace template URL with actual location.
-- Customize formatting and verification steps.
-- Adjust accuracy requirements as needed.
+Decisions
 
-### Meeting Type Adaptations
-- **External meetings:** Emphasize decisions and actions.
-- **Internal meetings:** Focus on discussions and next steps.
-- **Project meetings:** Highlight milestones and risks.
-- **Status meetings:** Focus on updates and blockers.
+Action Items
 
-### Common Template Formats
-- Confluence: Macros, task lists, info panels.
-- Word: Headers, tables, bullets.
-- Google Docs: Comments, suggestions.
-- Markdown: Checkboxes, tables.
+Ambiguities / Follow-ups
 
-## Quality Checklist
-- Participants listed.
-- Date, time, and purpose stated.
-- All major topics captured.
-- Action items assigned.
-- Decisions with decision-makers identified.
-- Technical details quoted.
-- Template format followed.
-- All links functional.
-- Document accessible.
+Quality Checklist
+
+Step 2 – Transcript Processing Requirements
+
+Read the entire transcript in full before summarizing.
+
+Do not stop after the first section or topic.
+
+Meetings may include multiple subject areas (e.g., sales updates, engineering design, project planning, risk reviews).
+
+Every major section of discussion must be represented in the final minutes.
+
+After reading, produce a coverage checklist listing each main topic or transition you detected.
+
+Example: “1. Budget forecast, 2. Product roadmap, 3. Security compliance, 4. Marketing alignment.”
+
+If any section of the meeting seems missing or truncated, clearly flag this before drafting minutes.
+
+Step 3 – Validated Fact Extraction
+
+Extract factual content from the entire transcript.
+Record only what is explicitly stated or clearly implied.
+
+Capture the following elements:
+
+Date, time, and meeting title
+
+Participant list and organizational affiliation
+
+Key topics discussed
+
+Decisions made (with context)
+
+Action items (with owner and due date, if mentioned)
+
+Quantitative data or technical details (quote or paraphrase accurately)
+
+Open questions or unresolved issues
+
+Rules:
+
+Quote directly when technical or numeric information is given.
+
+Do not infer meaning beyond what is said.
+
+If a template section has no data, insert:
+
+“No statements recorded in the transcript.”
+
+Attribute each decision or recommendation to the correct speaker.
+
+When uncertain, note:
+
+“[Unclear in transcript – pending clarification].”
+
+Step 4 – Draft Creation
+
+Using the validated facts, generate a formal meeting-minutes draft.
+Follow these standards:
+
+Maintain a neutral, factual tone (no opinions or speculation).
+
+Present discussion topics in chronological or logical order.
+
+Use tables for Discussion Topics (columns: Item | Notes).
+
+Use checkbox lists for Action Items (e.g., - [ ] Owner – Task – Due date).
+
+Under each Decision, include:
+
+Agent / Decision Maker
+
+Decision Summary
+
+Rationale or Impact
+
+Include a section titled Ambiguities / Missing Information for anything unclear, unrecorded, or requiring follow-up.
+
+Step 5 – Quality Verification and Review Gate
+
+Before completing the output, confirm the following:
+
+Quality Checklist
+
+ All entries traceable to transcript evidence
+
+ No invented or assumed details
+
+ Each technical or numeric statement quoted or attributed
+
+ All sections of the transcript represented
+
+ Professional tone and structure maintained
+
+ Clearly distinguished facts, decisions, and action items
+
+ Ambiguities explicitly listed
+
+ Draft prepared for review only — do not publish automatically
+
+Then output:
+
+Coverage Checklist – list of topics found in the full transcript
+
+Validated Facts Table – key points extracted
+
+Formal Meeting Minutes Draft (in the required format)
+
+Ambiguities / Missing Information list
+
+Content Standards
+
+Prioritize accuracy over completeness.
+
+Do not invent data to fill empty sections.
+
+Maintain clarity, conciseness, and professional readability.
+
+Use Canadian or local corporate English as appropriate.
+
+Format dates as YYYY-MM-DD.
+
+Attribute all statements by name or role when known.
+
+Optional Enhancements for Long Transcripts
+
+Process the transcript in segments (e.g., every 5–10 minutes or ~500 lines).
+
+Extract and summarise each segment, then merge them chronologically.
+
+Confirm end-of-file reached before producing the final draft.
+
+Success Criteria
+
+The final output must:
+
+Represent the entire meeting (no section omitted)
+
+Contain zero speculation or fabrication
+
+Be formatted for direct insertion into a documentation system
+
+Be ready for user or SME review prior to publication
 
 <!-- END PROMPT -->
 
@@ -177,7 +271,7 @@ Template Location: {{TEMPLATE_URL}}
 - Include compliance and industry-specific terminology.
 
 ---
-Version: 1.0  
-Last Updated: [Insert Date]  
+Version: 1.2  
+Last Updated: 2025-10-21  
 Compatible With: Confluence, Microsoft Word, Google Docs, Markdown  
 Recommended Use: Project meetings, external client meetings, formal business meetings
